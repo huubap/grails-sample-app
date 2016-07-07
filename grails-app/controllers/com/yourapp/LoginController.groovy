@@ -7,6 +7,6 @@ import grails.plugin.springsecurity.annotation.Secured
 class LoginController {
   def login() {
     def result = [success: true]
-    render render result as JSON
+    render result as JSON
   }
 }
