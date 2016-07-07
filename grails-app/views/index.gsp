@@ -1,3 +1,5 @@
+<%@ page import="com.yourapp.User" %>
+<%@ page import="com.yourapp.Tenant" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -17,7 +19,7 @@
 						emptyForm();
 						if(response.success)
 						{
-							var redirectUrl="${ createLink(action:'test' ,controller:'ASecured') }";
+							var redirectUrl="${ createLink(action:'test' ,controller:'protected') }";
 							window.location.assign(redirectUrl);
 						}
 						else
@@ -141,24 +143,42 @@
 			</ul>
 		</div>
 		<div id="page-body" role="main">
-			<h1>Welcome to Grails</h1>
-			<p>Congratulations, you have successfully started your first Grails application! At the moment
-			   this is the default page, feel free to modify it to either redirect to a controller or display whatever
-			   content you may choose. Below is a list of controllers that are currently deployed in this application,
-			   click on each to execute its default action:</p>
+
+			<div>
+				<g:link controller="protected" action='test'>Protected View</g:link>
+      </div>
+			<br/>
+			<hr/>
+			<br/>
 
 			<div id="controller-list" role="navigation">
-				<h2>Available Controllers:</h2>
+				<h1>List of tenant:</h1>
 				<ul>
-					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
-					</g:each>
+					<h2>List of users:</h2>
+					<ul>
+						<g:each var="u" in="${ User.list() }">
+							<li class="controller">tenant: <b>${u.tenant.code}</b>, username: <b>${u.username}</b>, altUsername: <b>${u.altUsername}</b></li>
+						</g:each>
+					</ul>
 				</ul>
 			</div>
+
+			<br/>
+			<div>
+				Password: pass
+			</div>
+			<br/>
+			<hr/>
+			<br/>
+
 			<div id='ajaxLogin'>
 				<form  method='POST' id='ajaxLoginForm' name='ajaxLoginForm' >
 					<p>
-						<label for='username'>UserName</label>
+						<label for='tenant'>Tenant</label>
+						<input type='text' name='j_tenantCode' id='tenant' />
+					</p>
+					<p>
+						<label for='username'>UserName/AltUsername</label>
 						<input type='text' name='j_username' id='username' />
 					</p>
 					<p>

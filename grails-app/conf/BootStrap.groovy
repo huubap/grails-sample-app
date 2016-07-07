@@ -7,19 +7,29 @@ import com.yourapp.UserRole
 class BootStrap {
 
     def init = { servletContext ->
-        def tenant = new Tenant(code: "abc").save()
-
         def adminRole = new Role(authority: "ROLE_ADMIN").save()
         def userRole = new Role(authority: "ROLE_USER").save()
 
-        def adminProfile = new Profile(tenant: tenant).save()
-        def userProfile = new Profile(tenant: tenant).save()
+        // Tenant A
+        def tenantA = new Tenant(code: "a").save()
 
-        def userWithAdminRole = new User(username: "admin@huubap.com", altUsername: "admin", password: "pass", tenant: tenant, profile: adminProfile).save()
-        def userWithUserRole = new User(username: "user@huubap.com", altUsername: "user", password: "pass", tenant: tenant, profile: userProfile).save()
+        def adminProfileOfTenantA = new Profile(tenant: tenantA).save()
+        def userProfileOfTenantA = new Profile(tenant: tenantA).save()
 
-        UserRole.create(userWithAdminRole, adminRole, true)
-        UserRole.create(userWithUserRole, userRole, true)
+        def userWithAdminRoleOfTenantA = new User(username: "admin@huubap.com", altUsername: "admin", password: "pass", tenant: tenantA, profile: adminProfileOfTenantA).save()
+        def userWithUserRoleOfTenantA = new User(username: "user@huubap.com", altUsername: "user", password: "pass", tenant: tenantA, profile: userProfileOfTenantA).save()
+
+        UserRole.create(userWithAdminRoleOfTenantA, adminRole, true)
+        UserRole.create(userWithUserRoleOfTenantA, userRole, true)
+
+        // Tenant B
+        def tenantB = new Tenant(code: "b").save()
+
+        def adminProfileOfTenantB = new Profile(tenant: tenantB).save()
+
+        def userWithAdminRoleOfTenantB = new User(username: "admin@huubap.com", altUsername: "admin", password: "pass", tenant: tenantB, profile: adminProfileOfTenantB).save()
+
+        UserRole.create(userWithAdminRoleOfTenantB, adminRole, true)
     }
     def destroy = {
     }
