@@ -121,6 +121,13 @@ log4j.main = {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.yourapp.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.yourapp.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.yourapp.Role'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/login/ajaxSuccess"
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
+grails.plugin.springsecurity.successHandler.ajaxSuccessUrl = "/login/ajaxSuccess"
+
+grails.plugin.springsecurity.logout.postOnly = false
+grails.plugin.springsecurity.auth.loginFormUrl = '/'
+grails.plugin.springsecurity.auth.ajaxLoginFormUrl = '/'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/':                              ['permitAll'],
 	'/index':                         ['permitAll'],

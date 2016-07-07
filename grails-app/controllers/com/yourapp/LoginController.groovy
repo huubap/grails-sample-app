@@ -9,4 +9,12 @@ class LoginController {
     def result = [success: true]
     render result as JSON
   }
+
+  /**
+   * The Ajax success redirect url.
+   */
+  def ajaxSuccess() {
+    System.println("Ajax sign-in succeed!")
+    render([success: true] as JSON)
+  }
 }

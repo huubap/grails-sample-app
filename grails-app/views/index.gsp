@@ -3,6 +3,44 @@
 	<head>
 		<meta name="layout" content="main"/>
 		<title>Welcome to Grails</title>
+		<script type='text/javascript'>
+			function authAjax()
+			{
+				var formdata = $('#ajaxLoginForm').serialize();
+				var dataUrl = "${request.contextPath}/j_spring_security_check"
+				jQuery.ajax({
+					type : 'POST',
+					url :  dataUrl ,
+					data : formdata,
+					success : function(response,textStatus)
+					{
+						emptyForm();
+						if(response.success)
+						{
+							var redirectUrl="${ createLink(action:'test' ,controller:'ASecured') }";
+							window.location.assign(redirectUrl);
+						}
+						else
+						{
+							$('#errorLoginMsg').html(response.error);
+						}
+					},
+					error : function(
+									XMLHttpRequest,
+									textStatus,
+									errorThrown) {
+					}
+				});
+			}
+
+
+			function emptyForm()
+			{
+				$('#username').val('');
+				$('#password').val('');
+				$('#remember_me').val('');
+			}
+		</script>
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
@@ -116,6 +154,22 @@
 						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
 					</g:each>
 				</ul>
+			</div>
+			<div id='ajaxLogin'>
+				<form  method='POST' id='ajaxLoginForm' name='ajaxLoginForm' >
+					<p>
+						<label for='username'>UserName</label>
+						<input type='text' name='j_username' id='username' />
+					</p>
+					<p>
+						<label for='password'>Password</label>
+						<input type='password' name='j_password' id='password' />
+					</p>
+					<p>
+						<input type="button" onclick='authAjax(); return false;' value="login" />
+					</p>
+				</form>
+				<div id='errorLoginMsg'></div>
 			</div>
 		</div>
 	</body>
