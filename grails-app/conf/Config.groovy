@@ -129,7 +129,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/**/js/**':                      ['permitAll'],
 	'/**/css/**':                     ['permitAll'],
 	'/**/images/**':                  ['permitAll'],
+  '/dbconsole/**':                  ['permitAll'],
 	'/**/favicon.ico':                ['permitAll']
 ]
 
 grails.app.context = '/'
+grails.dbconsole.enabled = true

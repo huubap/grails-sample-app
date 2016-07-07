@@ -5,6 +5,7 @@ class User {
 	transient springSecurityService
 
 	String username
+	String altUsername
 	String password
 	boolean enabled = true
 	boolean accountExpired
@@ -13,9 +14,13 @@ class User {
 
 	static transients = ['springSecurityService']
 
+	static belongsTo = [ profile: Profile, tenant: Tenant ]
+
 	static constraints = {
-		username blank: false, unique: true
+		username blank: false, unique: 'tenant'
+		altUsername blank: false, unique: 'tenant'
 		password blank: false
+		profile nullable: true
 	}
 
 	static mapping = {
