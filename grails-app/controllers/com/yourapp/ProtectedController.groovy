@@ -10,8 +10,14 @@ class ProtectedController {
   def test() {
     def user = springSecurityService.getCurrentUser() as User
     response.setContentType("application/json")
-    def result = [message: "You are viewing a protected page", tenant: "${user.tenant.code}", username: "${user.username}", altUsername: "${user.altUsername}"]
+    def users = User.list()
+    def result = [
+      message: "You are viewing a protected page",
+      tenant: "${user.tenant.code}",
+      username: "${user.username}",
+      altUsername: "${user.altUsername}",
+      users: users
+    ]
     render result as JSON
   }
-
 }
