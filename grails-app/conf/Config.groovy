@@ -125,20 +125,20 @@ grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/login/ajaxSucce
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.successHandler.ajaxSuccessUrl = "/login/ajaxSuccess"
 
-grails.plugin.springsecurity.logout.postOnly = false
-grails.plugin.springsecurity.auth.loginFormUrl = '/'
-grails.plugin.springsecurity.auth.ajaxLoginFormUrl = '/'
-grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-	'/assets/**':                     ['permitAll'],
-	'/**/js/**':                      ['permitAll'],
-	'/**/css/**':                     ['permitAll'],
-	'/**/images/**':                  ['permitAll'],
-  '/dbconsole/**':                  ['permitAll'],
-	'/**/favicon.ico':                ['permitAll']
-]
+//grails.plugin.springsecurity.logout.postOnly = false
+//grails.plugin.springsecurity.auth.loginFormUrl = '/'
+//grails.plugin.springsecurity.auth.ajaxLoginFormUrl = '/'
+//grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+//	'/':                              ['permitAll'],
+//	'/index':                         ['permitAll'],
+//	'/index.gsp':                     ['permitAll'],
+//	'/assets/**':                     ['permitAll'],
+//	'/**/js/**':                      ['permitAll'],
+//	'/**/css/**':                     ['permitAll'],
+//	'/**/images/**':                  ['permitAll'],
+//  '/dbconsole/**':                  ['permitAll'],
+//	'/**/favicon.ico':                ['permitAll']
+//]
 
 grails.app.context = '/'
 grails.dbconsole.enabled = true

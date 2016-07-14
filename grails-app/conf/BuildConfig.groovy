@@ -51,6 +51,11 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
+
+        compile 'com.auth0:auth0-spring-mvc:0.0.1'
+        compile 'org.springframework.security:spring-security-core:4.0.2.RELEASE'
+        compile 'org.springframework.security:spring-security-config:4.0.2.RELEASE'
+        compile 'org.springframework.security:spring-security-web:4.0.2.RELEASE'
     }
 
     plugins {
@@ -61,7 +66,7 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.1.2"
         compile ':cache:1.1.7'
         compile ":asset-pipeline:1.9.6"
-        compile ":spring-security-core:2.0-RC4"
+//        compile ":spring-security-core:2.0-RC4"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
