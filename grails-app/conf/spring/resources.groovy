@@ -30,4 +30,7 @@ beans = {
 //    preAuthenticationChecks = ref('preAuthenticationChecks')
 //    postAuthenticationChecks = ref('postAuthenticationChecks')
 //  }
+
+  xmlns context:"http://www.springframework.org/schema/context"
+  context.'component-scan'('base-package': "com.auth0")
 }

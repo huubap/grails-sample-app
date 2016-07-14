@@ -1,29 +1,24 @@
 package com.yourapp
 
-import grails.converters.JSON
-//import grails.plugin.springsecurity.SpringSecurityUtils
-//import grails.plugin.springsecurity.annotation.Secured
+import com.auth0.web.Auth0Config
+import com.auth0.web.NonceUtils
+import com.auth0.web.SessionUtils
+import org.springframework.beans.factory.annotation.Autowired
 
-//@Secured(['permitAll'])
 class LoginController {
-  def springSecurityService
 
-  /**
-   * The Ajax success redirect url.
-   */
-  def ajaxSuccess() {
-    println("Ajax sign-in succeed!")
+    static defaultAction = "login"
 
-    User user = springSecurityService.getCurrentUser() as User
-    String authority = ""
+    @Autowired
+    Auth0Config auth0Config
 
-    if (SpringSecurityUtils.ifAllGranted('ROLE_ADMIN')) {
-      println("Admin (${user.username}) has signed in")
-      authority = "ADMIN"
-    } else if (SpringSecurityUtils.ifAllGranted('ROLE_USER')) {
-      println("General user (${user.username}) has signed in")
-      authority = "USER"
+    def login() {
+        log.info("Performing login");
+        // add a Nonce value to session storage
+        NonceUtils.addNonceToStorage(request)
+
+        [clientId: auth0Config.clientId, domain: auth0Config.domain,
+         loginCallback: auth0Config.loginCallback, state: SessionUtils.getState(request)]
     }
-    render([success: true, authority: authority] as JSON)
-  }
+
 }
